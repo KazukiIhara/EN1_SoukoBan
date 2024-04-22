@@ -45,13 +45,38 @@ public class GameManagerScript : MonoBehaviour
         field[moveFrom.y, moveFrom.x] = null;
         return true;
     }
+    bool isCleard()
+    {
+        List<Vector2Int> goals = new List<Vector2Int>();
+
+        for (int y = 0; y < map.GetLength(0); y++)
+        {
+            for (int x = 0; x < map.GetLength(1); x++)
+            {
+                if (map[y, x] == 3)
+                {
+                    goals.Add(new Vector2Int(x, y));
+                }
+            }
+        }
+        for (int i = 0; i < goals.Count; i++)
+        {
+            GameObject f = field[goals[i].y, goals[i].x];
+            if (f == null || f.tag != "Box")
+            {
+                return false;
+            }
+        }
+        return true;
+    }
     // Start is called before the first frame update
     void Start()
     {
         map = new int[,] {
-            { 0, 0, 0, 0, 0 },
-            { 0, 0, 2, 2, 0 },
-            { 0, 2, 1, 0, 0 },
+            { 0, 0, 3, 0, 0 },
+            { 3, 2, 2, 0, 0 },
+            { 0, 2, 1, 2, 0 },
+            { 3, 0, 0, 3, 0 },
             { 0, 0, 0, 0, 0 },
         };
         field = new GameObject
@@ -88,35 +113,54 @@ public class GameManagerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.RightArrow))
+        if (!isCleard())
         {
-            //ˆÚ“®ˆ—
-            Vector2Int playerIndex = GetPlayerIndex();
-            Vector2Int velosity = new Vector2Int(1, 0);
-            MovePlayer(tag, playerIndex, playerIndex + velosity);
-        }
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            //ˆÚ“®ˆ—
-            Vector2Int playerIndex = GetPlayerIndex();
-            Vector2Int velosity = new Vector2Int(-1, 0);
-            MovePlayer(tag, playerIndex, playerIndex + velosity);
-        }
-        if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            //ˆÚ“®ˆ—
-            Vector2Int playerIndex = GetPlayerIndex();
-            Vector2Int velosity = new Vector2Int(0, -1);
-            MovePlayer(tag, playerIndex, playerIndex + velosity);
-        }
-        if (Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            //ˆÚ“®ˆ—
-            Vector2Int playerIndex = GetPlayerIndex();
-            Vector2Int velosity = new Vector2Int(0, 1);
-            MovePlayer(tag, playerIndex, playerIndex + velosity);
-        }
+            if (Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                //ˆÚ“®ˆ—
+                Vector2Int playerIndex = GetPlayerIndex();
+                Vector2Int velosity = new Vector2Int(1, 0);
+                MovePlayer(tag, playerIndex, playerIndex + velosity);
+                if (isCleard())
+                {
+                    Debug.Log("clear!");
+                }
+            }
+            if (Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                //ˆÚ“®ˆ—
+                Vector2Int playerIndex = GetPlayerIndex();
+                Vector2Int velosity = new Vector2Int(-1, 0);
+                MovePlayer(tag, playerIndex, playerIndex + velosity);
+                if (isCleard())
+                {
+                    Debug.Log("clear!");
+                }
+            }
+            if (Input.GetKeyDown(KeyCode.UpArrow))
+            {
+                //ˆÚ“®ˆ—
+                Vector2Int playerIndex = GetPlayerIndex();
+                Vector2Int velosity = new Vector2Int(0, -1);
+                MovePlayer(tag, playerIndex, playerIndex + velosity);
+                if (isCleard())
+                {
+                    Debug.Log("clear!");
+                }
+            }
+            if (Input.GetKeyDown(KeyCode.DownArrow))
+            {
+                //ˆÚ“®ˆ—
+                Vector2Int playerIndex = GetPlayerIndex();
+                Vector2Int velosity = new Vector2Int(0, 1);
+                MovePlayer(tag, playerIndex, playerIndex + velosity);
+                if (isCleard())
+                {
+                    Debug.Log("clear!");
+                }
+            }
 
+        }
 
     }
 }
