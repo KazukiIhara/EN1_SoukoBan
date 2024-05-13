@@ -10,6 +10,7 @@ public class GameManagerScript : MonoBehaviour
 {
     public GameObject playerPrefab;
     public GameObject boxPrefab;
+    public GameObject clearText;
     int[,] map;             //レベルデザイン用の配列
     GameObject[,] field;    //ゲーム管理用の配列
     Vector2Int GetPlayerIndex()
@@ -74,9 +75,9 @@ public class GameManagerScript : MonoBehaviour
     {
         map = new int[,] {
             { 0, 0, 3, 0, 0 },
-            { 3, 2, 2, 0, 0 },
-            { 0, 2, 1, 2, 0 },
-            { 3, 0, 0, 3, 0 },
+            { 0, 0, 2, 0, 0 },
+            { 3, 2, 1, 2, 3 },
+            { 0, 0, 0, 0, 0 },
             { 0, 0, 0, 0, 0 },
         };
         field = new GameObject
@@ -123,7 +124,8 @@ public class GameManagerScript : MonoBehaviour
                 MovePlayer(tag, playerIndex, playerIndex + velosity);
                 if (isCleard())
                 {
-                    Debug.Log("clear!");
+                    //ゲームオブジェクトのSetActiveメソッドを使い有効化
+                    clearText.SetActive(true);
                 }
             }
             if (Input.GetKeyDown(KeyCode.LeftArrow))
@@ -134,7 +136,8 @@ public class GameManagerScript : MonoBehaviour
                 MovePlayer(tag, playerIndex, playerIndex + velosity);
                 if (isCleard())
                 {
-                    Debug.Log("clear!");
+                    //ゲームオブジェクトのSetActiveメソッドを使い有効化
+                    clearText.SetActive(true);
                 }
             }
             if (Input.GetKeyDown(KeyCode.UpArrow))
@@ -145,7 +148,8 @@ public class GameManagerScript : MonoBehaviour
                 MovePlayer(tag, playerIndex, playerIndex + velosity);
                 if (isCleard())
                 {
-                    Debug.Log("clear!");
+                    //ゲームオブジェクトのSetActiveメソッドを使い有効化
+                    clearText.SetActive(true);
                 }
             }
             if (Input.GetKeyDown(KeyCode.DownArrow))
@@ -156,7 +160,8 @@ public class GameManagerScript : MonoBehaviour
                 MovePlayer(tag, playerIndex, playerIndex + velosity);
                 if (isCleard())
                 {
-                    Debug.Log("clear!");
+                    //ゲームオブジェクトのSetActiveメソッドを使い有効化
+                    clearText.SetActive(true);
                 }
             }
 
