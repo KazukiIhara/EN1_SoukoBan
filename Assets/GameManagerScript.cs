@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Xml.Schema;
 using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering;
@@ -23,6 +24,14 @@ public class GameManagerScript : MonoBehaviour
     public GameObject ResetText;
 
     public GameObject howtoplay;
+
+    public GameObject Easy;
+    public GameObject Normal;
+    public GameObject Hard;
+
+    public GameObject tab1;
+    public GameObject tab2;
+    public GameObject tab3;
 
     int goalNum = 0;
     GameObject[] goal;
@@ -135,6 +144,10 @@ public class GameManagerScript : MonoBehaviour
 
             case Scene.Stage:
                 StageSelect.SetActive(true);
+                PressSpace.SetActive(true);
+                Normal.SetActive(true);
+                Easy.SetActive(true);
+                Hard.SetActive(true);
 
                 break;
 
@@ -145,25 +158,25 @@ public class GameManagerScript : MonoBehaviour
                 {
                     case 0:
                         map = new int[,] {
-                        {4, 4, 4, 4, 4, 4, 4},
-                        {4, 0, 2, 0, 3, 0, 4},
-                        {4, 3, 0, 0, 2, 0, 4},
-                        {4, 4, 4, 0, 0, 0, 4},
-                        {4, 0, 0, 0, 2, 0, 4},
-                        {4, 0, 3, 0, 0, 1, 4},
-                        {4, 4, 4, 4, 4, 4, 4}
+                            {4, 4, 4, 4, 4, 4, 4},
+                            {4, 0, 2, 0, 3, 0, 4},
+                            {4, 3, 0, 0, 2, 0, 4},
+                            {4, 4, 4, 0, 0, 0, 4},
+                            {4, 0, 0, 0, 2, 0, 4},
+                            {4, 0, 3, 0, 0, 1, 4},
+                            {4, 4, 4, 4, 4, 4, 4}
                     };
                         break;
 
                     case 1:
                         map = new int[,] {
-                        { 4, 4, 4, 4, 4, 4, 4},
-                        { 4, 0, 0, 3, 0, 0, 4},
-                        { 4, 0, 0, 2, 0, 0, 4},
-                        { 4, 3, 2, 1, 2, 3, 4},
-                        { 4, 0, 0, 0, 0, 0, 4},
-                        { 4, 0, 0, 0, 0, 0, 4},
-                        { 4, 4, 4, 4, 4, 4, 4}
+                            { 4, 4, 4, 4, 4, 4, 4},
+                            { 4, 3, 4, 0, 4, 0, 4},
+                            { 4, 0, 4, 0, 4, 3, 4},
+                            { 4, 0, 4, 0, 2, 0, 4},
+                            { 4, 0, 2, 2, 0, 0, 4},
+                            { 4, 3, 0, 0, 0, 1, 4},
+                            { 4, 4, 4, 4, 4, 4, 4}
                     };
                         break;
 
@@ -261,7 +274,7 @@ public class GameManagerScript : MonoBehaviour
 
 
     // Update is called once per frame
-    void Update()
+    async void Update()
     {
         switch (currentScene)
         {
@@ -280,7 +293,7 @@ public class GameManagerScript : MonoBehaviour
                 {
                     currentStage++;
                 }
-                else if (Input.GetKeyDown(KeyCode.RightArrow))
+                else if (Input.GetKeyDown(KeyCode.LeftArrow))
                 {
                     currentStage--;
                 }
@@ -292,6 +305,29 @@ public class GameManagerScript : MonoBehaviour
                 {
                     currentStage = 2;
                 }
+                switch (currentStage)
+                {
+                    case 0:
+
+                        tab1.SetActive(true);
+                        tab2.SetActive(false);
+                        tab3.SetActive(false);
+                        break;
+
+                    case 1:
+                        tab1.SetActive(false);
+                        tab2.SetActive(true);
+                        tab3.SetActive(false);
+
+                        break;
+
+                    case 2:
+                        tab1.SetActive(false);
+                        tab2.SetActive(false);
+                        tab3.SetActive(true);
+                        break;
+                }
+
 
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
@@ -300,6 +336,13 @@ public class GameManagerScript : MonoBehaviour
                     PressSpace.SetActive(false);
                     howtoplay.SetActive(true);
                     ResetText.SetActive(true);
+                    Normal.SetActive(false);
+                    Easy.SetActive(false);
+                    Hard.SetActive(false);
+                    tab1.SetActive(false);
+                    tab2.SetActive(false);
+                    tab3.SetActive(false);
+
                     Initialize(currentScene, currentStage);
                 }
                 break;
