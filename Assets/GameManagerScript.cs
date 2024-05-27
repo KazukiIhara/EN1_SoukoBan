@@ -274,7 +274,7 @@ public class GameManagerScript : MonoBehaviour
 
 
     // Update is called once per frame
-    async void Update()
+    void Update()
     {
         switch (currentScene)
         {
@@ -395,7 +395,7 @@ public class GameManagerScript : MonoBehaviour
                             //à⁄ìÆèàóù
                             Vector2Int playerIndex = GetPlayerIndex();
                             Vector2Int velosity = new Vector2Int(-1, 0);
-                            
+
                             MovePlayer(tag, playerIndex, playerIndex + velosity);
                             moveTimer = 180;
                             if (isCleard())
