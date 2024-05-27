@@ -16,7 +16,7 @@ public class Particle : MonoBehaviour
     void Start()
     {
         //Á–Å‚·‚é‚Ü‚Å‚ÌŠÔ‚ğ0.3•b‚Æ‚·‚é
-        lifeTime = 0.3f;
+        lifeTime = 0.25f;
         //c‚èŠÔ‚ğ‰Šú‰»
         leftLifeTime = lifeTime;
         //Œ»İ‚Ìscale‚ğ‹L˜^
