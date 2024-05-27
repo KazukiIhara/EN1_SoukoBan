@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Xml.Schema;
-using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering;
 using UnityEngine.SubsystemsImplementation;
@@ -274,7 +273,7 @@ public class GameManagerScript : MonoBehaviour
 
 
     // Update is called once per frame
-    void Update()
+    async void Update()
     {
         switch (currentScene)
         {
