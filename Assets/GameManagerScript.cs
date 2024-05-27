@@ -182,13 +182,13 @@ public class GameManagerScript : MonoBehaviour
 
                     case 2:
                         map = new int[,] {
-                            {4, 4, 4, 4, 4, 4, 4},
-                            {4, 0, 3, 0, 3, 0, 4},
-                            {4, 0, 2, 0, 2, 0, 4},
-                            {4, 3, 0, 1, 0, 3, 4},
-                            {4, 0, 2, 0, 2, 0, 4},
-                            {4, 0, 3, 0, 3, 0, 4},
-                            {4, 4, 4, 4, 4, 4, 4}
+                            {0, 4, 4, 4, 4, 4, 4},
+                            {4, 4, 3, 4, 0, 0, 4},
+                            {4, 3, 0, 0, 2, 3, 4},
+                            {4, 4, 2, 2, 2, 0, 4},
+                            {4, 0, 0, 0, 2, 0, 4},
+                            {4, 4, 3, 4, 3, 1, 4},
+                            {0, 4, 4, 4, 4, 4, 4}
                       };
                         break;
 
@@ -395,7 +395,7 @@ public class GameManagerScript : MonoBehaviour
                             //à⁄ìÆèàóù
                             Vector2Int playerIndex = GetPlayerIndex();
                             Vector2Int velosity = new Vector2Int(-1, 0);
-
+                            
                             MovePlayer(tag, playerIndex, playerIndex + velosity);
                             moveTimer = 180;
                             if (isCleard())
